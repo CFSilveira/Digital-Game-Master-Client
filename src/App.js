@@ -6,6 +6,7 @@ import SignupPage from './pages/SignupPage/SignupPage';
 import Navbar from './components/Navbar/Navbar';
 import IsAnon from './components/IsAnon/IsAnon';
 import IsPrivate from './components/IsPrivate/IsPrivate';
+import Adventure from './pages/Adventure/Adventure';
 
 
 function App() {
@@ -15,6 +16,15 @@ function App() {
 
     <Routes>
     <Route path="/" element={<HomePage />} />
+
+    <Route
+          path="/adventure"
+          element={
+            <IsPrivate>
+              <Adventure />
+            </IsPrivate>
+          }
+        />
 
     <Route
           path="/signup"
