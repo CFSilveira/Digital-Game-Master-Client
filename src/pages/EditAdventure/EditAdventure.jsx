@@ -2,11 +2,15 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
 import AddArea from '../../components/AddArea/AddArea';
+import EditArea from '../../components/EditArea/EditArea';
 
 function EditAdventure() {
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [image, setImage] = useState('');
+  const [steps, setSteps] = useState('');
+  const [areas, setAreas] = useState('');
+  const [encounters, setEncounters] = useState('');
   const [adventure, setAdventure] = useState(null);
 
 
@@ -20,13 +24,26 @@ function EditAdventure() {
       .then(() => navigate('/adventure'));
   };
 
+  const fetchAreas = async () => {
+    try {
+      let response = await axios.get(`${process.env.REACT_APP_API_URL}/area`);
+      setAreas(response.data);
+      console.log('areas', response.data)
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const fetchAdventure = async () => {
     try {
       let response = await axios.get(`${process.env.REACT_APP_API_URL}/adventure/${adventureId}`);
-      let { name, description, image } = response.data;
+      let { name, description, image, steps } = response.data;
       setName(name);
       setDescription(description);
       setImage(image);
+      setSteps(steps);
+      setAdventure(response.data);
+      console.log(response.data)
     } catch (error) {
       console.log(error);
     }
@@ -34,41 +51,17 @@ function EditAdventure() {
 
   useEffect(() => {
     fetchAdventure();
-  }, []);
-
-  const { areaId } = useParams();
-
-  const fetchAreas = async () => {
-    try {
-      let response = await axios.get(`${process.env.REACT_APP_API_URL}/Area/${areaId}`);
-      let { name, description, image, step, connections, events, adventure } = response.data;
-      setName(name);
-      setDescription(description);
-      setImage(image);
-/*       setStep('step');
-      setConnections('connections');
-      setEvents('events');
-      setAdventure('adventure');
-      props.refreshAreas(); */
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  useEffect(() => {
     fetchAreas();
   }, []);
 
+
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    const body = { name, description, image };
+    const body = { name, description, image, areas, encounters };
 
     axios
-      .put(`${process.env.REACT_APP_API_URL}/adventure/${adventureId}`, body)
+      .put(`${process.env.REACT_APP_API_URL}/adventure/edit/${adventureId}`, body)
       .then((response) => {
-        setName('');
-        setDescription('');
         navigate(`/adventure/edit/${adventureId}`);
       })
       .catch((err) => console.log(err));
@@ -96,20 +89,20 @@ function EditAdventure() {
           value={image}
           onChange={(e) => setImage(e.target.value)}
         />
-        <button type="submit">Edit Quest</button>
+
+{/*           <p>Number of areas included: {adventure.areas.length}</p>
+          <p>Areas included: {adventure.areas}</p>    */} 
+         <button type="submit">Edit Quest</button>
       </form>
+      
       <button onClick={deleteAdventure}> Delete Quest</button>
 
-      <AddArea refreshAreas={fetchAreas} />
+      <AddArea refreshAreas={fetchAdventure}/>
 
-      {adventure &&
+       {(adventure && areas) &&
         adventure.areas.map((area) => (
-          <li key={area._id}>
-            <h3>{area.name}</h3>
-            <h4>Description</h4>
-            <p>{area.description}</p>
-          </li>
-        ))}
+          <EditArea allAreas={areas} area={area} refreshAreas={fetchAdventure}/>
+        ))} 
     </div>
   );
 }

@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-function AddArea(props) {
-  const [name, setName] = useState('');
-  const [description, setDescription] = useState('');
-  const [image, setImage] = useState('');
-  const [step, setStep] = useState('');
-  const [connections, setConnections] = useState('');
-  const [events, setEvents] = useState('');
+function EditArea(props) {
+  const [name, setName] = useState(props.area.name);
+  const [description, setDescription] = useState(props.area.description);
+  const [image, setImage] = useState(props.area.image);
+  const [step, setStep] = useState(props.area.step);
+  const [connections, setConnections] = useState(props.area.connections);
+  const [events, setEvents] = useState(props.area.events);
   const { adventureId } = useParams();
 
   const handleSubmit = (e) => {
@@ -17,22 +17,17 @@ function AddArea(props) {
     const body = { name, description, image, step, connections, events, adventureId };
 
     axios
-      .post(`${process.env.REACT_APP_API_URL}/area`, body)
+      .put(`${process.env.REACT_APP_API_URL}/area/${props.area._id}`, body)
       .then((response) => {
-        setName('');
-        setDescription('');
-        setImage('');
-        setStep('');
-        setConnections('');
-        setEvents('');
         props.refreshAreas();
       })
       .catch((err) => console.log(err));
   };
 
+  const addConnections
+
   return (
     <div>
-      <h3>Create Area</h3>
       <form onSubmit={handleSubmit}>
         <label htmlFor="name">Name</label>
         <input type="text" name="name" value={name} onChange={(e) => setName(e.target.value)} />
@@ -62,12 +57,30 @@ function AddArea(props) {
         />
 
         <label htmlFor="connections">Connections</label>
-        <input
-          type="array"
+        {props.allAreas.map((area) => (
+            <div>
+            <input
+          type="radio"
           name="connections"
-          value={connections}
+          value={area._id}
           onChange={(e) => setConnections(e.target.value)}
-        />
+            />
+            <label htmlFor={area._id}>{area.name}</label>
+            </div>
+        ))}
+
+        <label htmlFor="removeconnections">Remove Connections</label>
+        {connections.map((area) => (
+            <div>
+            <input
+          type="radio"
+          name="removeconnections"
+          value={area._id}
+          //onChange={(e) => setRemoveConnections(e.target.value)}
+            />
+            <label htmlFor={area._id}>{area.name}</label>
+            </div>
+        ))}
 
         <label htmlFor="events">Events</label>
         <input
@@ -83,4 +96,4 @@ function AddArea(props) {
   );
 }
 
-export default AddArea;
+export default EditArea;
