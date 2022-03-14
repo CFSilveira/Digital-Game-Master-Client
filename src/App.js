@@ -8,6 +8,8 @@ import IsAnon from './components/IsAnon/IsAnon';
 import IsPrivate from './components/IsPrivate/IsPrivate';
 import Adventure from './pages/Adventure/Adventure';
 import AdventureDetails from './pages/AdventureDetails/AdventureDetails';
+import EditAdventure from './pages/EditAdventure/EditAdventure';
+
 
 
 function App() {
@@ -35,6 +37,15 @@ function App() {
             </IsPrivate>
           }
         />
+      
+    <Route
+        path="/adventure/edit/:adventureId"
+        element={
+          <IsPrivate>
+            <EditAdventure />
+          </IsPrivate>
+        }
+      />
 
     <Route
           path="/signup"

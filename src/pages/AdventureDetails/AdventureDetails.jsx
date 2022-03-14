@@ -26,8 +26,8 @@ function AdventureDetails() {
           <h1>Name: {adventure.name}</h1>
           <p><img src={adventure.image} alt='visual representation of adventure'></img></p>
           <p>Description: {adventure.description}</p>
-          <p>Step: {adventure.steps}</p>
-          <p>Areas included: {adventure.areas}</p>
+          <p>Number of areas included: {adventure.areas.length}</p>
+          <p>Areas: {adventure.areas}</p>
           <p>Encounter included: {adventure.encounters}</p>
         </>
       )}
