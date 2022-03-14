@@ -7,6 +7,7 @@ import Navbar from './components/Navbar/Navbar';
 import IsAnon from './components/IsAnon/IsAnon';
 import IsPrivate from './components/IsPrivate/IsPrivate';
 import Adventure from './pages/Adventure/Adventure';
+import AdventureDetails from './pages/AdventureDetails/AdventureDetails';
 
 
 function App() {
@@ -22,6 +23,15 @@ function App() {
           element={
             <IsPrivate>
               <Adventure />
+            </IsPrivate>
+          }
+        />
+    
+    <Route
+          path="/adventure/:adventureId"
+          element={
+            <IsPrivate>
+              <AdventureDetails />
             </IsPrivate>
           }
         />

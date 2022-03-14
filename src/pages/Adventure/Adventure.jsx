@@ -23,20 +23,18 @@ function Adventure() {
       useEffect(() => {
         fetchAdventures();
       }, []);
-  console.log(adventures)
 
   return (
     <div>
       {adventures && (
         <>
-          <h1>Adventures</h1>
-          <Link to="/newadventure">Create New Adventure</Link>
-          <Link to="/editadventure">Edit Adventure</Link>
+        <AddForm refreshAdventures={fetchAdventures} />
+          <h1>Available Quests</h1>
 
           {adventures.map((adventure) => {
             return (
               <div key={adventure._id}>
-                <Link to={`/adventures/${adventure._id}`}>
+                <Link to={`/adventure/${adventure._id}`}>
                   <h3>{adventure.name}</h3>
                 </Link>
               </div>
@@ -45,18 +43,6 @@ function Adventure() {
         </>
       )}
 
-      {/* <div>
-        <AddForm refreshAdventures={fetchAdventures} />
-        {adventures.map((adventure) => {
-        return (
-          <div key={adventure._id}>
-            <Link to={`/adventure/${adventure._id}`}>
-              <h3>{adventure.title}</h3>
-            </Link>
-          </div>
-        );
-      })}
-    </div> */}
     </div>
   );
 }
