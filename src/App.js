@@ -9,8 +9,8 @@ import IsPrivate from './components/IsPrivate/IsPrivate';
 import Adventure from './pages/Adventure/Adventure';
 import AdventureDetails from './pages/AdventureDetails/AdventureDetails';
 import EditAdventure from './pages/EditAdventure/EditAdventure';
-
-
+import AllRooms from './pages/AllRooms/AllRooms';
+import RoomDetails from './pages/RoomDetails/RoomDetails';
 
 function App() {
   return (
@@ -48,6 +48,24 @@ function App() {
       />
 
     <Route
+          path="/room"
+          element={
+            <IsPrivate>
+              <AllRooms />
+            </IsPrivate>
+          }
+        />
+    
+    <Route
+          path="/room/:roomId"
+          element={
+            <IsPrivate>
+              <RoomDetails />
+            </IsPrivate>
+          }
+        />
+
+    <Route
           path="/signup"
           element={
             <IsAnon>
@@ -55,7 +73,7 @@ function App() {
             </IsAnon>
           }
         />
-        <Route
+    <Route
           path="/login"
           element={
             <IsAnon>

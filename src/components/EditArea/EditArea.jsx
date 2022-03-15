@@ -24,7 +24,34 @@ function EditArea(props) {
       .catch((err) => console.log(err));
   };
 
-  const addConnections
+    const addConnections = async () => {
+      try {
+        let response = await axios.get(`${process.env.REACT_APP_API_URL}/area`);
+        let filteredAreas = response.data
+          .then if (!props.area.connections.includes(filteredAreas.connections.area._id)){
+          .put(`${process.env.REACT_APP_API_URL}/area/${props.area._id}`, body)
+          .then((response) => {
+            props.refreshAreas();
+          })}
+          else {
+            
+          }
+      }
+        .catch((err) => console.log(err));
+    };
+    
+    const RemoveConnections = async () => {
+      try {
+        let filteredAreas = response.data
+          .then if (!props.area.connections.includes(filteredAreas.connections.area._id)){
+          .put(`${process.env.REACT_APP_API_URL}/area/${props.area._id}`, body)
+          .then((response) => {
+            props.refreshAreas();
+          })}
+      }
+        .catch((err) => console.log(err));
+    };
+    
 
   return (
     <div>
@@ -63,7 +90,8 @@ function EditArea(props) {
           type="radio"
           name="connections"
           value={area._id}
-          onChange={(e) => setConnections(e.target.value)}
+          //onChange={(e) => setConnections(e.target.value)}
+          onChange={(e) => addConnections(e.target.value)}
             />
             <label htmlFor={area._id}>{area.name}</label>
             </div>
