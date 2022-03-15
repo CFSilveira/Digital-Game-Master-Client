@@ -20,15 +20,24 @@ function AdventureDetails() {
   }, []);
 
   return (
-    <div>
+    <div className='Area-card'>
       {adventure && (
         <>
           <h1>Name: {adventure.name}</h1>
           <p><img src={adventure.image} alt='visual representation of adventure'></img></p>
           <p>Description: {adventure.description}</p>
-          <p>Number of areas included: {adventure.areas.length}</p>
-          <p>Areas included: {adventure.areas}</p>
-          <p>Encounter included: {adventure.encounters}</p>
+
+          { adventure.areas && (
+            <>
+
+            <p>Number of areas included: {adventure.areas.length}</p>
+          {/* <p>Areas included: {adventure.areas}</p> */}
+          </>
+
+
+          )}
+
+          {/* <p>Encounter included: {adventure.encounters}</p> */}
         </>
       )}
 

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import axios from 'axios';
 
 function AddArea(props) {
@@ -32,6 +32,7 @@ function AddArea(props) {
 
   return (
     <div>
+      <div>
       <h3>Create Area</h3>
       <form onSubmit={handleSubmit}>
         <label htmlFor="name">Name</label>
@@ -45,7 +46,7 @@ function AddArea(props) {
           onChange={(e) => setDescription(e.target.value)}
         />
 
-        <label htmlFor="image">Image</label>
+        <label htmlFor="image">Image Url</label>
         <input
           type="text"
           name="image"
@@ -79,6 +80,8 @@ function AddArea(props) {
     
         <button type="submit">Create Area</button>
       </form>
+      </div>
+      
     </div>
   );
 }

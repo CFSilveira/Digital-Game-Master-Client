@@ -23,8 +23,9 @@ function EditAdventure() {
       .delete(`${process.env.REACT_APP_API_URL}/adventure/${adventureId}`)
       .then(() => navigate('/adventure'));
   };
+  
 
-  const fetchAreas = async () => {
+/*    const fetchAreas = async () => {
     try {
       let response = await axios.get(`${process.env.REACT_APP_API_URL}/area`);
       setAreas(response.data);
@@ -32,7 +33,7 @@ function EditAdventure() {
     } catch (error) {
       console.log(error);
     }
-  };
+  }; */
 
   const fetchAdventure = async () => {
     try {
@@ -43,6 +44,7 @@ function EditAdventure() {
       setImage(image);
       setSteps(steps);
       setAdventure(response.data);
+      setAreas(response.data.areas)
       console.log(response.data)
     } catch (error) {
       console.log(error);
@@ -51,7 +53,7 @@ function EditAdventure() {
 
   useEffect(() => {
     fetchAdventure();
-    fetchAreas();
+    //fetchAreas();
   }, []);
 
 

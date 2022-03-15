@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import axios from 'axios';
 
 function EditArea(props) {
@@ -11,11 +11,10 @@ function EditArea(props) {
   const [events, setEvents] = useState(props.area.events);
   const { adventureId } = useParams();
 
+
   const handleSubmit = (e) => {
     e.preventDefault();
-
     const body = { name, description, image, step, connections, events, adventureId };
-
     axios
       .put(`${process.env.REACT_APP_API_URL}/area/${props.area._id}`, body)
       .then((response) => {
@@ -24,37 +23,9 @@ function EditArea(props) {
       .catch((err) => console.log(err));
   };
 
-    const addConnections = async () => {
-      try {
-        let response = await axios.get(`${process.env.REACT_APP_API_URL}/area`);
-        let filteredAreas = response.data
-          .then if (!props.area.connections.includes(filteredAreas.connections.area._id)){
-          .put(`${process.env.REACT_APP_API_URL}/area/${props.area._id}`, body)
-          .then((response) => {
-            props.refreshAreas();
-          })}
-          else {
-            
-          }
-      }
-        .catch((err) => console.log(err));
-    };
-    
-    const RemoveConnections = async () => {
-      try {
-        let filteredAreas = response.data
-          .then if (!props.area.connections.includes(filteredAreas.connections.area._id)){
-          .put(`${process.env.REACT_APP_API_URL}/area/${props.area._id}`, body)
-          .then((response) => {
-            props.refreshAreas();
-          })}
-      }
-        .catch((err) => console.log(err));
-    };
-    
-
   return (
-    <div>
+    <div className='Area-cards'>
+    <div className='Area-card-form'>
       <form onSubmit={handleSubmit}>
         <label htmlFor="name">Name</label>
         <input type="text" name="name" value={name} onChange={(e) => setName(e.target.value)} />
@@ -84,47 +55,61 @@ function EditArea(props) {
         />
 
         <label htmlFor="connections">Connections</label>
+          <select name="connections" id="connections" multiple>
+            {props.allAreas.map((area) => (
+              <option value={area._id}>{area.name}</option>
+            ))} 
+          </select>
+          <input
+            type="array"
+            name="connections"
+            value={connections}
+            onChange={(e) => setConnections(e.target.value)}
+          />
+
+
+          
+
+{/*          <label htmlFor="connections">Connections</label>
         {props.allAreas.map((area) => (
             <div>
             <input
           type="radio"
           name="connections"
           value={area._id}
-          //onChange={(e) => setConnections(e.target.value)}
-          onChange={(e) => addConnections(e.target.value)}
-            />
-            <label htmlFor={area._id}>{area.name}</label>
-            </div>
-        ))}
-
-        <label htmlFor="connections">Connections</label>
-        {props.allAreas.map((area) => (
-            <div>
-            <input
-              <select name="connections" id={area._id} multiple>
-                <option value={area._id}>{area.name}</option>
-              </select>
-          //onChange={(e) => setConnections(e.target.value)}
-          onChange={(e) => addConnections(e.target.value)}
-            />
-            <label htmlFor={area._id}>{area.name}</label>
-            </div>
-        ))}
-
-
-
-{/*         <label htmlFor="removeconnections">Remove Connections</label>
-        {connections.map((area) => (
-            <div>
-            <input
-          type="radio"
-          name="removeconnections"
-          value={area._id}
-          //onChange={(e) => setRemoveConnections(e.target.value)}
+          onChange={(e) => setConnections(e.target.value)}
             />
             <label htmlFor={area._id}>{area.name}</label>
             </div>
         ))} */}
+
+{/*         <label htmlFor="connections">Connections</label>
+        {props.allAreas.map((area) => (
+            <div>
+            <select name="connections" id={area._id} multiple>
+                <option value={area._id}>{area.name}</option>
+              </select>
+            <input
+              onChange={(e) => setConnections(e.target.value)}
+            />
+            <label htmlFor={area._id}>{area.name}</label>
+            </div>
+        ))} */}
+
+
+
+{/*         {props.allAreas.map((area) => (
+            <div>
+            <select name="connections" id={area._id} multiple>
+                <option value={area._id}>{area.name}</option>
+              </select>
+            <input
+              onChange={(e) => setConnections(e.target.value)}
+            />
+            <label htmlFor={area._id}>{area.name}</label>
+            </div>
+        ))} */}
+
 
         <label htmlFor="events">Events</label>
         <input
@@ -136,6 +121,11 @@ function EditArea(props) {
     
         <button type="submit">Create Area</button>
       </form>
+      </div>
+
+      <div className='Area-card-img'>
+        <p><img src={image} alt='map of area'></img></p>
+      </div>
     </div>
   );
 }
