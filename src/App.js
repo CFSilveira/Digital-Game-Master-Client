@@ -11,6 +11,7 @@ import AdventureDetails from './pages/AdventureDetails/AdventureDetails';
 import EditAdventure from './pages/EditAdventure/EditAdventure';
 import AllRooms from './pages/AllRooms/AllRooms';
 import RoomDetails from './pages/RoomDetails/RoomDetails';
+import Game from './pages/Game/Game';
 
 function App() {
   return (
@@ -61,6 +62,15 @@ function App() {
           element={
             <IsPrivate>
               <RoomDetails />
+            </IsPrivate>
+          }
+        />
+
+    <Route
+          path="/room/game/:roomId"
+          element={
+            <IsPrivate>
+              <Game />
             </IsPrivate>
           }
         />

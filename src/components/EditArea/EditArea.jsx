@@ -97,7 +97,23 @@ function EditArea(props) {
             </div>
         ))}
 
-        <label htmlFor="removeconnections">Remove Connections</label>
+        <label htmlFor="connections">Connections</label>
+        {props.allAreas.map((area) => (
+            <div>
+            <input
+              <select name="connections" id={area._id} multiple>
+                <option value={area._id}>{area.name}</option>
+              </select>
+          //onChange={(e) => setConnections(e.target.value)}
+          onChange={(e) => addConnections(e.target.value)}
+            />
+            <label htmlFor={area._id}>{area.name}</label>
+            </div>
+        ))}
+
+
+
+{/*         <label htmlFor="removeconnections">Remove Connections</label>
         {connections.map((area) => (
             <div>
             <input
@@ -108,7 +124,7 @@ function EditArea(props) {
             />
             <label htmlFor={area._id}>{area.name}</label>
             </div>
-        ))}
+        ))} */}
 
         <label htmlFor="events">Events</label>
         <input
