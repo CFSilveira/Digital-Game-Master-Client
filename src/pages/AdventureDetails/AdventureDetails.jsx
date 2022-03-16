@@ -8,7 +8,7 @@ function AdventureDetails() {
 
   const fetchAdventure = async () => {
     try {
-      let response = await axios.get(`${process.env.REACT_APP_API_URL}/adventure/${adventureId}`);
+      let response = await axios.get(`${process.env.REACT_APP_API_URL}/api/adventure/${adventureId}`);
       setAdventure(response.data);
     } catch (error) {
       console.log(error);

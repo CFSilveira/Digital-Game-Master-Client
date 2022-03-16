@@ -20,7 +20,7 @@ function EditAdventure() {
 
   const deleteAdventure = () => {
     axios
-      .delete(`${process.env.REACT_APP_API_URL}/adventure/${adventureId}`)
+      .delete(`${process.env.REACT_APP_API_URL}/api/adventure/${adventureId}`)
       .then(() => navigate('/adventure'));
   };
   
@@ -37,7 +37,7 @@ function EditAdventure() {
 
   const fetchAdventure = async () => {
     try {
-      let response = await axios.get(`${process.env.REACT_APP_API_URL}/adventure/${adventureId}`);
+      let response = await axios.get(`${process.env.REACT_APP_API_URL}/api/adventure/${adventureId}`);
       let { name, description, image, steps } = response.data;
       setName(name);
       setDescription(description);
@@ -62,7 +62,7 @@ function EditAdventure() {
     const body = { name, description, image, areas, encounters };
 
     axios
-      .put(`${process.env.REACT_APP_API_URL}/adventure/edit/${adventureId}`, body)
+      .put(`${process.env.REACT_APP_API_URL}/api/adventure/edit/${adventureId}`, body)
       .then((response) => {
         navigate(`/adventure/edit/${adventureId}`);
       })

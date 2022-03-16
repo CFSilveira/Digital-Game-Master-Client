@@ -10,7 +10,7 @@ function Adventure() {
         try {
           const storedToken = localStorage.getItem('authToken');
     
-          let response = await axios.get(`${process.env.REACT_APP_API_URL}/adventure`, {
+          let response = await axios.get(`${process.env.REACT_APP_API_URL}/api/adventure`, {
             headers: { Authorization: `Bearer ${storedToken}` },
           });
           setAdventures(response.data);

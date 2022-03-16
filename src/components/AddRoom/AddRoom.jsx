@@ -16,7 +16,7 @@ function AddRoom(props) {
     const body = { name, gameMaster, players, adventure };
 
     axios
-      .post(`${process.env.REACT_APP_API_URL}/room`, body)
+      .post(`${process.env.REACT_APP_API_URL}/api/room`, body)
       .then((response) => {
         setName('');
         setPlayers('');

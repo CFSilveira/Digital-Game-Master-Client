@@ -12,7 +12,7 @@ function AddForm(props) {
     const body = { name, description, image };
 
     axios
-      .post(`${process.env.REACT_APP_API_URL}/adventure`, body)
+      .post(`${process.env.REACT_APP_API_URL}/api/adventure`, body)
       .then((response) => {
         setName('');
         setDescription('');

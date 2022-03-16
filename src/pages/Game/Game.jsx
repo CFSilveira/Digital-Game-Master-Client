@@ -12,7 +12,7 @@ function Game() {
 
   const fetchAdventure = async () => {
     try {
-      let response = await axios.get(`${process.env.REACT_APP_API_URL}/adventure/${adventureId}`);
+      let response = await axios.get(`${process.env.REACT_APP_API_URL}/api/adventure/${adventureId}`);
       setAdventure(response.data);
       setAreas(response.data.areas);
       console.log('Areas found:', response.data.areas)
@@ -44,7 +44,6 @@ function Game() {
 
       {areas &&
       <>
-      <p>There are areas! It works!</p>
       <h1>You are currently in: {areas[currentArea].name}</h1>
 
    

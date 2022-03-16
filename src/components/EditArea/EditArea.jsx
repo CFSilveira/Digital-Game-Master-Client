@@ -17,7 +17,7 @@ function EditArea(props) {
     console.log(connections)
     const body = { name, description, image, step, connections, events, adventureId };
     axios
-      .put(`${process.env.REACT_APP_API_URL}/area/${props.area._id}`, body)
+      .put(`${process.env.REACT_APP_API_URL}/api/area/${props.area._id}`, body)
       .then((response) => {
         props.refreshAreas();
       })

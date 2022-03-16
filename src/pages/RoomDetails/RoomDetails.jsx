@@ -8,7 +8,7 @@ function RoomDetails() {
 
   const fetchRoom = async () => {
     try {
-      let response = await axios.get(`${process.env.REACT_APP_API_URL}/room/${roomId}`);
+      let response = await axios.get(`${process.env.REACT_APP_API_URL}/api/room/${roomId}`);
       setRoom(response.data);
     } catch (error) {
       console.log(error);

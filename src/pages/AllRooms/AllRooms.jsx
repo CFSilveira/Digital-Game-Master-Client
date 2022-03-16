@@ -12,7 +12,7 @@ function AllRooms() {
         try {
           const storedToken = localStorage.getItem('authToken');
     
-          let response = await axios.get(`${process.env.REACT_APP_API_URL}/room`, {
+          let response = await axios.get(`${process.env.REACT_APP_API_URL}/api/room`, {
             headers: { Authorization: `Bearer ${storedToken}` },
           });
           setRooms(response.data);

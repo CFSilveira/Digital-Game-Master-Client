@@ -17,7 +17,7 @@ function AddArea(props) {
     const body = { name, description, image, step, connections, events, adventureId };
 
     axios
-      .post(`${process.env.REACT_APP_API_URL}/area`, body)
+      .post(`${process.env.REACT_APP_API_URL}/api/area`, body)
       .then((response) => {
         setName('');
         setDescription('');
