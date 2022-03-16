@@ -14,6 +14,7 @@ function EditArea(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log(connections)
     const body = { name, description, image, step, connections, events, adventureId };
     axios
       .put(`${process.env.REACT_APP_API_URL}/area/${props.area._id}`, body)
@@ -21,6 +22,27 @@ function EditArea(props) {
         props.refreshAreas();
       })
       .catch((err) => console.log(err));
+  };
+
+  const addConnections = (valueCon) => {
+    console.log ('ssssssssssssssssssssssss', valueCon)
+    if (connections.includes(valueCon)) {
+      return
+/*       let tempCon = [...connections];
+      tempCon.filter(( el) => el !== valueCon)
+      setConnections(tempCon) */
+    } else {
+      setConnections([...connections, valueCon])
+    }
+
+
+
+    /* axios
+      .put(`${process.env.REACT_APP_API_URL}/area/${props.area._id}`, body)
+      .then((response) => {
+        props.refreshAreas();
+      })
+      .catch((err) => console.log(err)); */
   };
 
   return (
@@ -55,17 +77,12 @@ function EditArea(props) {
         />
 
         <label htmlFor="connections">Connections</label>
-          <select name="connections" id="connections" multiple>
+          <select name="connections" id="connections" onChange={(e) => addConnections(e.target.value)}>
             {props.allAreas.map((area) => (
-              <option value={area._id}>{area.name}</option>
+              (!props.area.connections.includes(area._id)) && <option value={area._id}>{area.name}</option>
+              
             ))} 
           </select>
-          <input
-            type="array"
-            name="connections"
-            value={connections}
-            onChange={(e) => setConnections(e.target.value)}
-          />
 
 
           
