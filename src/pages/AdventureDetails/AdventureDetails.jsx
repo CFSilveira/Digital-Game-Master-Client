@@ -24,7 +24,7 @@ function AdventureDetails() {
       {adventure && (
         <>
           <h1>Name: {adventure.name}</h1>
-          <p><img src={adventure.image} alt='visual representation of adventure'></img></p>
+          <p><img className='Adventure-Frame' src={adventure.image} alt='visual representation of adventure'></img></p>
           <p>Description: {adventure.description}</p>
 
           { adventure.areas && (

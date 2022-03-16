@@ -2,12 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
 import GameAdventure from '../../components/GameAdventure/GameAdventure';
+import GameDetails from '../../components/GameDetails/GameDetails';
 
 function Game() {
   const [adventure, setAdventure] = useState(null);
   const { adventureId } = useParams();
   const [areas, setAreas] = useState(null);
-  const currentArea = 0
+  const [step, setStep] = useState('');
+  const [currentArea, setCurrentArea] = useState(null);
   const currentAreaStep = '1A'
 
   const fetchAdventure = async () => {
@@ -15,6 +17,7 @@ function Game() {
       let response = await axios.get(`${process.env.REACT_APP_API_URL}/api/adventure/${adventureId}`);
       setAdventure(response.data);
       setAreas(response.data.areas);
+      setCurrentArea(response.data.areas[0])
       console.log('Areas found:', response.data.areas)
     } catch (error) {
       console.log(error);
@@ -25,49 +28,51 @@ function Game() {
     fetchAdventure();
   }, []);
 
-/*   const fetchAreas = async () => {
-    try {
-      let response = await axios.get(`${process.env.REACT_APP_API_URL}/area/${response.data.areas._id}`);
-      setArea(response.data);
-      console.log('ssssssssssssssssssss', response.data)
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  const changeArea = (area) => {
+    console.log('Area changed to...', step)
+    setCurrentArea(area)
+    console.log(currentArea)
+}
 
-  useEffect(() => {
-    fetchAreas();
-  }, []); */
+
 
   return (
     <div className='Area-card'>
 
-      {areas &&
+      {currentArea &&
       <>
-      <h1>You are currently in: {areas[currentArea].name}</h1>
+      <h1>You are currently in: {currentArea.name}</h1>
 
-   
-      <p><img src={areas[currentArea].image} alt='visual representation of adventure'></img></p>
-      <p>Area description: {areas[currentArea].description}</p>
+      <div className='Area-Big-Box'>
+      <>  
+      <p><img className='Game-Img' src={currentArea.image} alt='visual representation of adventure'></img></p>
+      </>
+      <div className='Area-Inner-Box'>
+        <div>
+          <h3>Area description</h3>
+        </div>
+        <div>
+          <p>{currentArea.description}</p>
+        </div>
+      </div>
+      </div>
 
-      <p>This area connects to</p>
       <div className='Area-card-game'>
+      <p>This area connects to</p>
       {(adventure && areas) &&
-        adventure.areas.map((area) => (
+        currentArea.connections.map((area) => (
+          <div>
           <GameAdventure allAreas={areas} area={area} refreshAreas={fetchAdventure}/>
-        ))} 
+          <button value={area.step} onChange={(e) => setStep(e.target.value)} onClick={()=> changeArea(area)}>Move to {area.name}</button>
+
+        </div>
+        ))}
+         
         </div>
   
       </>
       }
 
-      {adventure &&
-      <>
-      <Link className='fake-button' to={`/adventure/edit/${adventure._id}`}>Edit adventure</Link>
-      <Link className='fake-button' to={`/adventure/game/${adventure._id}`}>Start adventure</Link>
-      </>
-      }
-      <Link className='fake-button' to="/adventure"> Back to Adventure List</Link>
     </div>
   );
 }

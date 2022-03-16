@@ -83,50 +83,6 @@ function EditArea(props) {
             ))} 
           </select>
 
-
-          
-
-{/*          <label htmlFor="connections">Connections</label>
-        {props.allAreas.map((area) => (
-            <div>
-            <input
-          type="radio"
-          name="connections"
-          value={area._id}
-          onChange={(e) => setConnections(e.target.value)}
-            />
-            <label htmlFor={area._id}>{area.name}</label>
-            </div>
-        ))} */}
-
-{/*         <label htmlFor="connections">Connections</label>
-        {props.allAreas.map((area) => (
-            <div>
-            <select name="connections" id={area._id} multiple>
-                <option value={area._id}>{area.name}</option>
-              </select>
-            <input
-              onChange={(e) => setConnections(e.target.value)}
-            />
-            <label htmlFor={area._id}>{area.name}</label>
-            </div>
-        ))} */}
-
-
-
-{/*         {props.allAreas.map((area) => (
-            <div>
-            <select name="connections" id={area._id} multiple>
-                <option value={area._id}>{area.name}</option>
-              </select>
-            <input
-              onChange={(e) => setConnections(e.target.value)}
-            />
-            <label htmlFor={area._id}>{area.name}</label>
-            </div>
-        ))} */}
-
-
         <label htmlFor="events">Events</label>
         <input
           type="array"
@@ -143,7 +99,7 @@ function EditArea(props) {
       </div>
 
       <div className='Area-card-img'>
-        <p><img src={image} alt='map of area'></img></p>
+        <p><img className='Area-Img' src={image} alt='map of area'></img></p>
       </div>
     </div>
   );

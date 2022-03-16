@@ -32,8 +32,7 @@ function GameAdventure(props) {
     <p>Step: {step}</p>
     <button value={step} onChange={(e) => setName(e.target.value)} onClick={changeArea}>Move here</button>
 
-    {connections.includes(props.area.name) &&
-    <p>It has connections?</p>}
+
     
 {/*     {props.allAreas.map((area) => (
               (!props.area.connections.includes(area._id)) && <option value={area._id}>{area.name}</option>
