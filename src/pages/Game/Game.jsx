@@ -1,38 +1,21 @@
-import React, { useState, useEffect, useContext } from 'react';
-import axios from 'axios';
+import React, { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
+import axios from 'axios';
 import GameAdventure from '../../components/GameAdventure/GameAdventure';
 
 function Game() {
-    const [adventure, setAdventure] = useState(null);
-    const { adventureId } = useParams();
-    const [name, setName] = useState('');
-    const [description, setDescription] = useState('');
-    const [image, setImage] = useState('');
-    const [steps, setSteps] = useState('');
-    const [areas, setAreas] = useState('');
-    const [encounters, setEncounters] = useState('');
-  
-  const fetchAreas = async () => {
-    try {
-      let response = await axios.get(`${process.env.REACT_APP_API_URL}/area`);
-      setAreas(response.data);
-      console.log('areas', response.data)
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  const [adventure, setAdventure] = useState(null);
+  const { adventureId } = useParams();
+  const [areas, setAreas] = useState(null);
+  const currentArea = 0
+  const currentAreaStep = '1A'
 
   const fetchAdventure = async () => {
     try {
       let response = await axios.get(`${process.env.REACT_APP_API_URL}/adventure/${adventureId}`);
-      let { name, description, image, steps } = response.data;
-      setName(name);
-      setDescription(description);
-      setImage(image);
-      setSteps(steps);
       setAdventure(response.data);
-      console.log(response.data)
+      setAreas(response.data.areas);
+      console.log('Areas found:', response.data.areas)
     } catch (error) {
       console.log(error);
     }
@@ -40,38 +23,54 @@ function Game() {
 
   useEffect(() => {
     fetchAdventure();
-    fetchAreas();
   }, []);
 
+/*   const fetchAreas = async () => {
+    try {
+      let response = await axios.get(`${process.env.REACT_APP_API_URL}/area/${response.data.areas._id}`);
+      setArea(response.data);
+      console.log('ssssssssssssssssssss', response.data)
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
+  useEffect(() => {
+    fetchAreas();
+  }, []); */
 
   return (
-    <div>
-    {(adventure && areas) && 
-        <>
+    <div className='Area-card'>
 
-        <div>
-          <h1>Name: {adventure.name}</h1>
+      {areas &&
+      <>
+      <p>There are areas! It works!</p>
+      <h1>You are currently in: {areas[currentArea].name}</h1>
+
+   
+      <p><img src={areas[currentArea].image} alt='visual representation of adventure'></img></p>
+      <p>Area description: {areas[currentArea].description}</p>
+
+      <p>This area connects to</p>
+      <div className='Area-card-game'>
+      {(adventure && areas) &&
+        adventure.areas.map((area) => (
+          <GameAdventure allAreas={areas} area={area} refreshAreas={fetchAdventure}/>
+        ))} 
         </div>
+  
+      </>
+      }
 
-        <div>
-        <GameAdventure />
-          <p><img src={adventure.image} alt='visual representation of adventure'></img></p>
-        </div>
-
-        <div>  
-          <p>Description: {adventure.description}</p>
-          <p>Number of areas included: {adventure.areas.length}</p>
-          <p>Areas included: {adventure.areas}</p>
-          <p>Encounter included: {adventure.encounters}</p>
-        </div>
-
-        </>
-
-
-        }
+      {adventure &&
+      <>
+      <Link className='fake-button' to={`/adventure/edit/${adventure._id}`}>Edit adventure</Link>
+      <Link className='fake-button' to={`/adventure/game/${adventure._id}`}>Start adventure</Link>
+      </>
+      }
+      <Link className='fake-button' to="/adventure"> Back to Adventure List</Link>
     </div>
-  )
+  );
 }
 
-export default Game
+export default Game;

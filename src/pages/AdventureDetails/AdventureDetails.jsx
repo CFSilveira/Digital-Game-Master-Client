@@ -41,8 +41,13 @@ function AdventureDetails() {
         </>
       )}
 
-      {adventure && <Link to={`/adventure/edit/${adventure._id}`}>Edit adventure</Link>}
-      <Link to="/adventure"> Back to Adventure List</Link>
+      {adventure &&
+      <>
+      <Link className='fake-button' to={`/adventure/edit/${adventure._id}`}>Edit adventure</Link>
+      <Link className='fake-button' to={`/adventure/game/${adventure._id}`}>Start adventure</Link>
+      </>
+      }
+      <Link className='fake-button' to="/adventure"> Back to Adventure List</Link>
     </div>
   );
 }

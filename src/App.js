@@ -49,6 +49,15 @@ function App() {
       />
 
     <Route
+        path="/adventure/game/:adventureId"
+        element={
+          <IsPrivate>
+            <Game />
+          </IsPrivate>
+        }
+      />
+
+    <Route
           path="/room"
           element={
             <IsPrivate>

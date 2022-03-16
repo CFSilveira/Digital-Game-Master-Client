@@ -25,7 +25,6 @@ function EditArea(props) {
   };
 
   const addConnections = (valueCon) => {
-    console.log ('ssssssssssssssssssssssss', valueCon)
     if (connections.includes(valueCon)) {
       return
 /*       let tempCon = [...connections];
@@ -77,7 +76,7 @@ function EditArea(props) {
         />
 
         <label htmlFor="connections">Connections</label>
-          <select name="connections" id="connections" onChange={(e) => addConnections(e.target.value)}>
+          <select name="connections" id="connections" defaultValue="Goofy" onChange={(e) => addConnections(e.target.value)}>
             {props.allAreas.map((area) => (
               (!props.area.connections.includes(area._id)) && <option value={area._id}>{area.name}</option>
               
@@ -138,6 +137,9 @@ function EditArea(props) {
     
         <button type="submit">Create Area</button>
       </form>
+
+
+
       </div>
 
       <div className='Area-card-img'>

@@ -9,11 +9,11 @@ function Navbar() {
 
   return (
     <nav className={'Navbar ' + theme}>
-      <Link to="/"> Homepage</Link>
+      <Link className='fake-button' to="/"> Homepage</Link>
       {loggedIn && (
         <>
-          <Link to="/adventure"> Create/Edit Adventure</Link>
-          <Link to="/room"> Create/Edit Search Room</Link>
+          <Link className='fake-button' to="/adventure"> Create/Edit Adventure</Link>
+          <Link className='fake-button' to="/room"> Create/Edit Search Room</Link>
           {user.username}
           <button onClick={logoutUser}>Logout</button>
         </>
@@ -21,8 +21,8 @@ function Navbar() {
 
       {!loggedIn && (
         <>
-          <Link to="/signup"> Signup</Link>
-          <Link to="/login"> Login</Link>
+          <Link className='fake-button' to="/signup"> Signup</Link>
+          <Link className='fake-button' to="/login"> Login</Link>
         </>
       )}
     </nav>
