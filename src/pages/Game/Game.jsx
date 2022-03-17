@@ -46,20 +46,10 @@ const toggleShow = () => {
     <div className='Area-card'>
 
       {showAPI &&
-        <div>
         
         <div>
-        <h1>THE Search Box will appear here</h1>
-        <SearchAPI></SearchAPI>
+       <SearchAPI></SearchAPI>
 
-        </div>
-        
-        {searchResults &&
-        <div>
-        <h2>Are there results?</h2>
-        </div>
-        }
-        
         </div>
         }
 
