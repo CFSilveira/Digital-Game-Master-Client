@@ -70,6 +70,10 @@ const toggleShow = () => {
         </div>
         <div>
           <p>{currentArea.description}</p>
+          {currentArea.events.map((area) => (
+            <p>area.events</p>
+          ))}
+          <p>{currentArea.events}</p>
         </div>
       </div>
       </div>

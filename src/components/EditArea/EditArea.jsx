@@ -81,7 +81,7 @@ function EditArea(props) {
             .filter((element) => {return element.step !== props.area.step})
             .map((area) => (
               <>
-              {(area.name === "IronHack") && <option value={area._id}>{area.name}</option>}
+              {(area.name && !(area.connections.some(connection => connection.name === area.name))) && <option value={area._id}>{area.name}</option>}
              </>
             ))} 
           </select>

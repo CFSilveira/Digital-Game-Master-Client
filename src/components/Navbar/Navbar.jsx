@@ -16,8 +16,7 @@ function Navbar() {
       {loggedIn && (
         <>
           <Link className='fake-button' to="/adventure"> Create/Edit Adventure</Link>
-          <Link className='fake-button' to="/searchAPI"> Search external API</Link>
-          {user.username}
+          Logged in as {user.username}
           <button onClick={logoutUser}>Logout</button>
 
           <ReactPlayer
