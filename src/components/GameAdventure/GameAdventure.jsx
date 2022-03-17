@@ -10,8 +10,6 @@ function GameAdventure(props) {
   const [connections, setConnections] = useState(props.area.connections);
   const [events, setEvents] = useState(props.area.events);
   const currentArea = useState(props.currentArea)
-/*   const [areas, setAreas] = useState(props.area);
- */
   const { adventureId } = useParams();
 
   console.log(props.area.name)
@@ -19,27 +17,10 @@ function GameAdventure(props) {
   console.log('Current step :', step)
 
 
-    const changeArea = () => {
-      console.log('Area changed to', step)
-
-  }
-
-
 
   return (
     <div>
     <p>{name}</p>
-    <p>Step: {step}</p>
-    <button value={step} onChange={(e) => setName(e.target.value)} onClick={changeArea}>Move here</button>
-
-
-    
-{/*     {props.allAreas.map((area) => (
-              (!props.area.connections.includes(area._id)) && <option value={area._id}>{area.name}</option>
-              
-            ))}  */}
-
-    
     </div>
   )
 }

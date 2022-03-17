@@ -12,6 +12,7 @@ import EditAdventure from './pages/EditAdventure/EditAdventure';
 import AllRooms from './pages/AllRooms/AllRooms';
 import RoomDetails from './pages/RoomDetails/RoomDetails';
 import Game from './pages/Game/Game';
+import SearchAPI from './components/SearchAPI/SearchAPI';
 
 function App() {
   return (
@@ -80,6 +81,15 @@ function App() {
           element={
             <IsPrivate>
               <Game />
+            </IsPrivate>
+          }
+        />
+
+    <Route
+          path="/searchAPI"
+          element={
+            <IsPrivate>
+              <SearchAPI />
             </IsPrivate>
           }
         />

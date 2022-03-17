@@ -5,6 +5,7 @@ import { AuthContext } from '../../context/auth.context';
 import ReactPlayer from 'react-player/youtube'
 
 
+
 function Navbar() {
   const { theme, toggleTheme } = useContext(ThemeContext)
   const { loggedIn, user, logoutUser } = useContext(AuthContext);
@@ -15,7 +16,7 @@ function Navbar() {
       {loggedIn && (
         <>
           <Link className='fake-button' to="/adventure"> Create/Edit Adventure</Link>
-          <Link className='fake-button' to="/room"> Create/Edit Search Room</Link>
+          <Link className='fake-button' to="/searchAPI"> Search external API</Link>
           {user.username}
           <button onClick={logoutUser}>Logout</button>
 

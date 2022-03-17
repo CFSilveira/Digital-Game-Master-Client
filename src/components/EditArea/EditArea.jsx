@@ -77,12 +77,18 @@ function EditArea(props) {
 
         <label htmlFor="connections">Connections</label>
           <select name="connections" id="connections" defaultValue="Goofy" onChange={(e) => addConnections(e.target.value)}>
-            {props.allAreas.map((area) => (
-              (!props.area.connections.includes(area._id)) && <option value={area._id}>{area.name}</option>
-              
+            {props.allAreas
+            .filter((element) => {return element.step !== props.area.step})
+            .map((area) => (
+              <>
+              {(area.name === "IronHack") && <option value={area._id}>{area.name}</option>}
+             </>
             ))} 
           </select>
-
+            {/* (!props.area.connections.includes(area._id)) && <option value={area._id}>{area.name}</option> */}
+            {/* .forEach((element1) => {return element1.connections.filter((element2) => {
+              return element1.step === element2.step
+            })}) */}
         <label htmlFor="events">Events</label>
         <input
           type="array"
