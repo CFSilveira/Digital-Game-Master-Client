@@ -28,7 +28,7 @@ function SignupPage() {
   };
   return (
     <div>
-      <h1>Signup</h1>
+      <h1 className='auth' style={{ textDecoration: 'none' }}>Signup</h1>
       <form onSubmit={handleSubmit}>
         <label htmlFor="username">Username</label>
         <input type="text" name="username" value={username} onChange={handleUsername} />

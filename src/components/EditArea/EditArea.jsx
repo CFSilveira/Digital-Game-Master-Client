@@ -27,21 +27,14 @@ function EditArea(props) {
   const addConnections = (valueCon) => {
     if (connections.includes(valueCon)) {
       return
-/*       let tempCon = [...connections];
-      tempCon.filter(( el) => el !== valueCon)
-      setConnections(tempCon) */
+
     } else {
       setConnections([...connections, valueCon])
     }
 
 
 
-    /* axios
-      .put(`${process.env.REACT_APP_API_URL}/area/${props.area._id}`, body)
-      .then((response) => {
-        props.refreshAreas();
-      })
-      .catch((err) => console.log(err)); */
+
   };
 
   return (
@@ -85,19 +78,9 @@ function EditArea(props) {
              </>
             ))} 
           </select>
-            {/* (!props.area.connections.includes(area._id)) && <option value={area._id}>{area.name}</option> */}
-            {/* .forEach((element1) => {return element1.connections.filter((element2) => {
-              return element1.step === element2.step
-            })}) */}
-        <label htmlFor="events">Events</label>
-        <input
-          type="array"
-          name="events"
-          value={events}
-          onChange={(e) => setEvents(e.target.value)}
-        />
+
     
-        <button type="submit">Create Area</button>
+        <button className='formButton' type="submit">Create Area</button>
       </form>
 
 

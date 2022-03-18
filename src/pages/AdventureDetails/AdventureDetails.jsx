@@ -23,9 +23,9 @@ function AdventureDetails() {
     <div className='Area-card'>
       {adventure && (
         <>
-          <h1>Name: {adventure.name}</h1>
-          <p><img className='Adventure-Frame' src={adventure.image} alt='visual representation of adventure'></img></p>
-          <p>Description: {adventure.description}</p>
+          <h1 className='auth'>Name: {adventure.name}</h1>
+          <h3><img className='Adventure-Frame' src={adventure.image} alt='visual representation of adventure'></img></h3>
+          <h3>Description: {adventure.description}</h3>
 
           { adventure.areas && (
             <>
@@ -42,12 +42,12 @@ function AdventureDetails() {
       )}
 
       {adventure &&
-      <>
-      <Link className='fake-button' to={`/adventure/edit/${adventure._id}`}>Edit adventure</Link>
-      <Link className='fake-button' to={`/adventure/game/${adventure._id}`}>Start adventure</Link>
-      </>
+      <div className='adv-details'>
+      <Link style={{ textDecoration: 'none' }} to={`/adventure/edit/${adventure._id}`}><h1 className='auth'>Edit Quest</h1></Link>
+      <Link style={{ textDecoration: 'none' }} to={`/adventure/game/${adventure._id}`}><h1 className='auth'>Start Quest</h1></Link>
+      </div>
       }
-      <Link className='fake-button' to="/adventure"> Back to Adventure List</Link>
+      <Link style={{ textDecoration: 'none' }} to="/adventure"><h2 className='auth'>Back to Quest List</h2></Link>
     </div>
   );
 }

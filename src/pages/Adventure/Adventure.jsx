@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import AddForm from '../../components/AddForm/AddForm';
+import availableAdv from '../../img/available.png'
 
 function Adventure() {
     const [adventures, setAdventures] = useState([]);
@@ -27,20 +28,26 @@ function Adventure() {
   return (
     <div>
       {adventures && (
-        <>
-        <AddForm refreshAdventures={fetchAdventures} />
-          <h1>Available Quests</h1>
+        <div className='adv'>
+          <div>
+            <AddForm refreshAdventures={fetchAdventures} />
+          </div>
 
-          {adventures.map((adventure) => {
-            return (
-              <div key={adventure._id}>
-                <Link to={`/adventure/${adventure._id}`}>
-                  <h3>{adventure.name}</h3>
-                </Link>
-              </div>
-            );
-          })}
-        </>
+          <div>
+              <img className='splash-adv' src={availableAdv} alt='splash homepage'></img>
+              <h1 className='auth'>Available Quests</h1>
+
+              {adventures.map((adventure) => {
+                return (
+                  <div key={adventure._id}>
+                    <Link style={{ textDecoration: 'none' }} to={`/adventure/${adventure._id}`}>
+                      <h3 className='auth'>{adventure.name}</h3>
+                    </Link>
+                  </div>
+                );
+              })}
+          </div>
+        </div>
       )}
 
     </div>

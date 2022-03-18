@@ -58,14 +58,14 @@ function SearchAPI() {
     <div>
 
         <div>
-        <h1>Search for:</h1>
+        <h1 className='auth' >Search for:</h1>
         <form onSubmit={handleSubmit}>
             <select value={search1} onChange={(e) => setSearch1(e.target.value)}>
                 {searchArray1.map((element) => (
                     <option value={element}>{element}</option>
                 ))}
             </select>
-            <button type="submit">Select Category</button>
+            <button className='formButton' type="submit">Select Category</button>
         </form>
         <form onSubmit={handleSubmit2}>
             <select value={search2} onChange={(e) => setSearch2(e.target.value)}>
@@ -73,21 +73,19 @@ function SearchAPI() {
                     <option value={element.index}>{element.name}</option>
                 ))}
             </select>
-            <button type="submit">Search {search1}</button>
+            <button className='formButton' type="submit">Search {search1}</button>
         </form>
         </div>
-        <div>
+        <div className='search-box-results'>
 
             <>
             {search1 === 'spells' &&
             <>
             <p>Spell name: {searchArray3.name}</p>
             <p>Description: {searchArray3.desc}</p>
-            <p>Higher level: {searchArray3.higher_level}</p>
             <p>Range: {searchArray3.range}</p>
             <p>Casting time: {searchArray3.casting_time}</p>
             <p>Level: {searchArray3.level}</p>
-            <p>Material: {searchArray3.material}</p>
             <p>Duration: {searchArray3.duration}</p>
 {/*             <p>Damage: {searchArray3.damage.damage_type.name}</p> */}
 {/*             <p>Area of effect: {searchArray3.area_of_effect.size}</p>
@@ -101,14 +99,12 @@ function SearchAPI() {
             <p>Equipment name: {searchArray3.name}</p>
             <p>Weight: {searchArray3.weight}</p>
             <p>Description: {searchArray3.desc}</p>
-            <p>More details: https://www.dnd5eapi.co{searchArray3.url}</p>
-
-
             {searchArray3.cost &&
 (            <>
-            <p>{searchArray3.cost.quantity}</p>
+            <p>Cost: {searchArray3.cost.quantity} {searchArray3.cost.unit}</p>
             </>)
             }
+            <p>More details: https://www.dnd5eapi.co{searchArray3.url}</p>
 
 {/*             <p>{searchArray3.}</p>
             <p>{searchArray3.}</p> */}
@@ -120,14 +116,13 @@ function SearchAPI() {
             <p>Name: {searchArray3.name}</p>
             <p>Size: {searchArray3.size}</p>
             <p>Type: {searchArray3.type}</p>
-            <p>Subtype: {searchArray3.subtype}</p>
             <p>Alignment: {searchArray3.alignment}</p>
             <p>Armor Class: {searchArray3.armor_class}</p>
             <p>Hit points: {searchArray3.hit_points}</p>
             <p>Hit dice: {searchArray3.hit_dice}</p>
             <p>Strength: {searchArray3.strength}</p>
             <p>Dextery: {searchArray3.dexterity}</p>
-            <p>Constitution: {searchArray3.constituiton}</p>
+            <p>Constitution: {searchArray3.constitution}</p>
             <p>Intelligence: {searchArray3.intelligence}</p>
             <p>Wisdom: {searchArray3.wisdom}</p>
             <p>Charisma: {searchArray3.charisma}</p>
@@ -135,7 +130,6 @@ function SearchAPI() {
             <p>XP: {searchArray3.xp}</p>
             <p>Challenge Rating: {searchArray3.challenge_rating}</p>
             <p>More details: https://www.dnd5eapi.co{searchArray3.url}</p>
-
             </>
 
 

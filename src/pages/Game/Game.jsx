@@ -9,7 +9,7 @@ function Game() {
   const [areas, setAreas] = useState([]);
 /*   const [step, setStep] = useState('');
  */  const [currentArea, setCurrentArea] = useState(null);
-  const [showAPI, setShowAPI] = useState(true);
+  const [showAPI, setShowAPI] = useState(false);
   const searchResults = null;
 
   const fetchAdventure = async () => {
@@ -57,8 +57,8 @@ const toggleShow = () => {
 
       {currentArea &&
       <>
-      <button onClick={toggleShow}>{showAPI ? 'Hide' : 'Show'}</button>
-      <h1>You are currently in: {currentArea.name}</h1>
+      <button className='formButton' onClick={toggleShow}>{showAPI ? 'Hide API search menu' : 'Show API search menu'}</button>
+      <h1 className='green-tinted-2'>You are in: {currentArea.name}</h1>
 
       <div className='Area-Big-Box'>
       <>  
@@ -66,7 +66,7 @@ const toggleShow = () => {
       </>
       <div className='Area-Inner-Box'>
         <div>
-          <h3>Area description</h3>
+          <h3 className='green-tinted-2'>Area description</h3>
         </div>
         <div>
           <p>{currentArea.description}</p>
@@ -77,15 +77,16 @@ const toggleShow = () => {
         </div>
       </div>
       </div>
-
+      
+      <h3 className='green-tinted-2'>This area connects to</h3>
       <div className='Area-card-game'>
-      <p>This area connects to</p>
+      
       {currentArea.connections &&
         currentArea.connections.map((area) => (
           <div>
           {/* <GameAdventure allAreas={areas} area={area} refreshAreas={fetchAdventure}/> */}
-          <p>{area.name}</p>
-          <button onClick={()=> changeArea(area)}>Move to {area.name}</button>
+          <h2 className='green-tinted'>{area.name}</h2>
+          <button className='formButton' onClick={()=> changeArea(area)}>Move to {area.name}</button>
 {/*           <button value={area.step} onChange={(e) => setStep(e.target.value)} onClick={()=> changeArea(area)}>Move to {area.name}</button>
  */}
         </div>
@@ -95,6 +96,8 @@ const toggleShow = () => {
   
       </>
       }
+      <Link style={{ textDecoration: 'none' }} to="/adventure"><h5 className='auth'>Return to Quests</h5></Link>
+
 
     </div>
   );

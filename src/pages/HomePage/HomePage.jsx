@@ -1,6 +1,8 @@
 import React, {useContext} from 'react';
 import { Link } from 'react-router-dom';
-import homeOne from '../../img/home1.png'
+import adventure from '../../img/adventure.png'
+import register from '../../img/login.png'
+import login from '../../img/register.png'
 import { AuthContext } from '../../context/auth.context';
 
 
@@ -9,29 +11,39 @@ function HomePage() {
 
   return (
     <div>
-      <h1>Digital Game Master</h1>
-      <img src={homeOne} alt='splash homepage'></img>
+      <h1 className='auth'>Digital Game Master</h1>
 
       {loggedIn && (
         <>
-          <h1>{user.username} is logged in</h1>
-          <Link to="/adventure"> Create/Edit Adventure</Link>
-          <br></br>
-          <Link to="/room"> Create/Edit Search Room</Link>
-          <br></br>
-          <button onClick={logoutUser}>Logout</button>
+          <div className='homepage'>
+            <div>
+              <Link to="/adventure"><img className='splash-img' src={adventure} alt='splash homepage'></img></Link>
+              <Link style={{ textDecoration: 'none' }} to="/adventure"><h1 className='auth'>Start or Create Quest</h1></Link>
+                    
+            </div>
+          </div>      
         </>
       )}
 
       {!loggedIn && (
         <>
-          <h1>No user logged in</h1>
-          <Link to="/signup"> Signup</Link>
-          <Link to="/login"> Login</Link>
+          <div className='homepage'>
+            <div>              
+              <Link to="/signup"><h1><img className='splash-img' src={register} alt='splash homepage'></img></h1></Link>
+              <Link style={{ textDecoration: 'none' }} to="/signup"><h1 className='auth'>Signup</h1></Link>
+
+              
+            </div>
+            <div>
+              <Link to="/login"><h1><img className='splash-img' src={login} alt='splash homepage'></img></h1></Link>
+              <Link style={{ textDecoration: 'none' }} to="/login"><h1 className='auth'>Login</h1></Link>
+
+            </div>
+          </div>
+
+
         </>
       )}
-      <br></br>
-      <img src='../../img/home1.png' alt='splash homepage'></img>
     </div>
   );
 }

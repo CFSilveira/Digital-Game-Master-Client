@@ -31,7 +31,7 @@ function LoginPage() {
   };
   return (
     <div>
-      <h1>Login</h1>
+      <h1 className='auth' style={{ textDecoration: 'none' }}>Login</h1>
       <form onSubmit={handleSubmit}>
         <label htmlFor="username">Username</label>
         <input type="text" name="username" value={username} onChange={handleUsername} />

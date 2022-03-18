@@ -33,8 +33,8 @@ function AddArea(props) {
   return (
     <div>
       <div>
-      <h3>Create Area</h3>
-      <form onSubmit={handleSubmit}>
+      <h1 className='auth'>Create Area</h1>
+      <form className='form' onSubmit={handleSubmit}>
         <label htmlFor="name">Name</label>
         <input type="text" name="name" value={name} onChange={(e) => setName(e.target.value)} />
 
@@ -69,16 +69,16 @@ function AddArea(props) {
           value={connections}
           onChange={(e) => setConnections(e.target.value)}
         />
-
+{/* 
         <label htmlFor="events">Events</label>
         <input
           type="array"
           name="events"
           value={events}
           onChange={(e) => setEvents(e.target.value)}
-        />
+        /> */}
     
-        <button type="submit">Create Area</button>
+        <button className='formButton' type="submit">Create Area</button>
       </form>
       </div>
       

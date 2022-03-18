@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import createAdv from '../../img/create.png'
 
 function AddForm(props) {
   const [name, setName] = useState('');
@@ -23,8 +24,8 @@ function AddForm(props) {
 
   return (
     <div>
-      <h1>Create Quest</h1>
-      <form onSubmit={handleSubmit}>
+      <h1 className='auth'>Create Quest</h1>
+      <form className='form' onSubmit={handleSubmit}>
         <label htmlFor="name">Name</label>
         <input type="text" name="name" value={name} onChange={(e) => setName(e.target.value)} />
 
@@ -44,8 +45,9 @@ function AddForm(props) {
           onChange={(e) => setImage(e.target.value)}
         />
         
-        <button type="submit">Create Adventure</button>
+        <button className='formButton' type="submit">Create Adventure</button>
       </form>
+      <img className='splash-adv' src={createAdv} alt='splash homepage'></img>
     </div>
   );
 }

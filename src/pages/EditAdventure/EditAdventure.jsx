@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useParams, useNavigate } from 'react-router-dom';
+import { Link, useParams, useNavigate } from 'react-router-dom';
 import AddArea from '../../components/AddArea/AddArea';
 import EditArea from '../../components/EditArea/EditArea';
 
@@ -71,8 +71,9 @@ function EditAdventure() {
 
   return (
     <div>
-      <h3>Edit Quest</h3>
-      <form onSubmit={handleSubmit}>
+      <Link style={{ textDecoration: 'none' }} to="/adventure"><h3 className='auth'>Return to Quests</h3></Link>
+      <h1 className='auth'>Edit Quest</h1>
+      <form className='form' onSubmit={handleSubmit}>
         <label htmlFor="name">Name</label>
         <input type="text" name="name" value={name} onChange={(e) => setName(e.target.value)} />
 
@@ -94,18 +95,19 @@ function EditAdventure() {
 
 {/*           <p>Number of areas included: {adventure.areas.length}</p>
           <p>Areas included: {adventure.areas}</p>    */} 
-         <button type="submit">Edit Quest</button>
+         <button className='formButton' type="submit">Edit Quest</button>
       </form>
-      
-      <button onClick={deleteAdventure}> Delete Quest</button>
+      <br></br>
+      <button className='formButton' onClick={deleteAdventure}> Delete Quest</button>
 
       <AddArea refreshAreas={fetchAdventure}/>
 
        {(adventure && areas) &&
         adventure.areas.map((area) => (
           <EditArea allAreas={areas} area={area} refreshAreas={fetchAdventure}/>
-        ))} 
-    </div>
+        ))}
+{/*         <Link style={{ textDecoration: 'none' }} to="/adventure"><h1 className='auth'>Return to Quests</h1></Link>
+ */}        </div>
   );
 }
 
