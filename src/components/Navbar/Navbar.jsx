@@ -23,7 +23,7 @@ function Navbar() {
           />
         </div>
         <div>
-        <img className='bm-img' src={bm} alt='splash homepage'></img>
+        {/* <img className='bm-img' src={bm} alt='splash homepage'></img> */}
         </div>
         <div className='logout'>
             <button className='myButton' onClick={logoutUser}>Logout</button>
